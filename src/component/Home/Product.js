@@ -28,7 +28,7 @@ const Product = ({ product }) => {
   return (
     <>
       {currentProduct ? (
-        <div className="w-72 h-96  border border-gray-200 bg-white rounded-md overflow-hidden shadow-md cursor-pointer select-none hover:shadow-lg" onClick={handleNavigate}>
+        <div className="w-full sm:w-72 sm:h-96  border border-gray-200 bg-white rounded-md overflow-hidden shadow-md cursor-pointer select-none hover:shadow-lg" onClick={handleNavigate}>
           <div className="h-56 overflow-hidden p-2">
             <img src={currentProduct.image} alt={currentProduct.title} className="object-fill w-full h-full" />
           </div>

@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { ProductContext } from '../middlewares/global-state';
 
 const ProductPage = () => {
   const params = useParams();
   const [currentProduct, setCurrentProduct] = useState(null);
-  const {data, dispatch } = useContext(ProductContext)
+  const { dispatch } = useContext(ProductContext)
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get(`https://fakestoreapi.com/products/${params.id}`)
@@ -40,19 +41,20 @@ const ProductPage = () => {
         quantity: 1,
       },
     });
+    navigate('/cart')
   };
 
   return (
     <>{currentProduct ?
       <div className='w-full flex justify-center my-6 bg-light'>
-        <div className='w-full max-w-7xl border-2 flex justify-between bg-white mb-4 shadow-lg'>
-          <div className='w-5/12 p-4 text-center'>
+        <div className='w-full max-w-7xl border-2 flex flex-col md:flex-row justify-between bg-white mb-4 shadow-lg'>
+          <div className='w-full md:w-5/12 p-4 text-center'>
             <div className='border-2 p-4'>
               <img src={currentProduct.image} alt="" className='max-h-[80vh]' />
             </div>
 
           </div>
-          <div className='w-7/12 flex flex-col  p-4 space-y-4'>
+          <div className='w-full md:w-7/12 flex flex-col  p-4 space-y-4'>
             <div>
               <h1 className="text-3xl font-bold">{currentProduct.title}</h1>
             </div>
@@ -71,7 +73,7 @@ const ProductPage = () => {
             </div>
             <div className="space-x-3 mt-4">
               <button className='bg-primary text-white btn' onClick={handleAddToCart}>Add to Cart</button>
-              <button className='bg-light text-black btn'>Buy Now</button>
+              <button className='bg-light text-black btn' onClick={() => navigate}>Buy Now</button>
             </div>
           </div>
         </div>

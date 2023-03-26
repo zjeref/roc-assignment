@@ -45,21 +45,19 @@ const Cart = () => {
     }, 0).toFixed(2);
 
     return (
-        <div className='w-full flex justify-center my-6 bg-light'>
-            <div className='w-full max-w-7xl border-2 flex justify-between bg-white mb-4 shadow-lg'>
+        <div className='w-full flex flex-col md:flex-row justify-center my-6 bg-light md:space-x-4 px-4'>
+            <div className='w-full max-w-2xl border-2 flex justify-between bg-white mb-4 shadow-lg '>
                 {cartProducts.length > 0 ? (
                     <div className="">
                         {cartProducts.map((product) => (
                             <div key={product.id} className="border-b-2 p-4 flex">
                                 <Link to={`/product/${product.id}`}>
-                                    <img
-                                        src={product.image}
-                                        alt={product.title}
-                                        className="w-56 object-cover"
-                                    />
+                                    <div className='w-56'>
+                                        <img src={product.image} alt={product.title} className="w-56 object-cover" />
+                                    </div>
                                 </Link>
                                 <div className="mx-10 py-5">
-                                    <h2 className="text-lg font-semibold text-center mb-2">
+                                    <h2 className="text-lg font-semibold mb-2">
                                         {product.title}
                                     </h2>
                                     <p className="text-gray-800 text-xl">${product.price}</p>
@@ -86,18 +84,23 @@ const Cart = () => {
                                 </div>
                             </div>
                         ))}
-                        <div className="text-center text-2xl flex justify-center py-5">
-                            <p>Total </p>
-                            <p>{`: $${total}`}</p>
-                        </div>
+
                     </div>
 
                 ) : (
                     <p>Your cart is empty.</p>
                 )}
             </div>
-            <div>
-
+            <div className='w-full md:max-w-xs h-max flex justify-between'>
+                <div className='w-full'>
+                    <div className="text-center text-2xl flex justify-center py-5  bg-white">
+                        <p>Total </p>
+                        <p>{`: $${total}`}</p>
+                    </div>
+                    <div className="text-center text-2xl flex justify-center my-2 px-2">
+                        <button className="btn bg-primary text-white rounded-sm">Checkout</button>
+                    </div>
+                </div>
             </div>
         </div>
     )

@@ -17,7 +17,7 @@ const Categories = () => {
 
     return (
         <div className="w-full  flex justify-center my-4">
-            <div className="space-x-4 flex max-w-6xl">
+            <div className="space-x-4 flex max-w-6xl flex-wrap">
                 <Category key="all" category={"all"} />
                 {category?.map(cat => {
                     return <Category key={cat} category={cat} />
