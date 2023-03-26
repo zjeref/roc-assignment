@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ProductContext } from '../middlewares/global-state'
 import { Link } from 'react-router-dom'
+import Checkout from '../component/Cart/Checkout'
+import CartItem from '../component/Cart/CartItem'
 
 const Cart = () => {
     const { data, dispatch } = useContext(ProductContext)
@@ -57,47 +59,9 @@ const Cart = () => {
                 {cartProducts.length > 0 ? (
                     <div className="transition-all ease-in-out delay-75">
                         {cartProducts.map((product) => (
-                            <div key={product.id} className="border-b-2 p-4 flex flex-col sm:flex-row">
-                                <Link to={`/product/${product.id}`}>
-                                    <div className=' flex items-center justify-center h-full'>
-                                        <img src={product.image} alt={product.title} className="max-w-[14rem] md:min-w-[14rem] object-cover" />
-                                    </div>
-                                </Link>
-                                <div className="mx-10 py-5">
-                                    <h2 className="text-lg font-semibold mb-2">
-                                        {product.title}
-                                    </h2>
-                                    <p className="text-gray-800 text-xl">${product.price}</p>
-                                    <div className="flex justify-center items-center w-min my-5">
-                                        <button
-                                            className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-l"
-                                            onClick={() =>
-                                                handleQuantityChange(product.id, product.quantity - 1)
-                                            }
-                                            disabled={product.quantity <= 1}
-                                        >
-                                            -
-                                        </button>
-                                        <div className="mx-4">{product.quantity}</div>
-                                        <button
-                                            className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-r"
-                                            onClick={() =>
-                                                handleQuantityChange(product.id, product.quantity + 1)
-                                            }
-                                        >
-                                            +
-                                        </button>
-                                    </div>
-                                    <div className="text-lg space-x-2">
-                                        <button className="font-bold">Save for Later</button>
-                                        <button className="text-red-600 font-bold" onClick={() => handleRemoveProduct(product.id)}>Remove</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <CartItem key={product.id} item={product.id} productItem={product} />
                         ))}
-
                     </div>
-
                 ) : (
                     <div className='w-full'>
                         <p className='text-lg text-center'>Your cart is empty.</p>
@@ -105,17 +69,7 @@ const Cart = () => {
 
                 )}
             </div>
-            <div className='w-full md:max-w-xs h-max flex justify-between'>
-                <div className='w-full'>
-                    <div className="text-center text-2xl flex justify-center py-5  bg-white">
-                        <p>Total </p>
-                        <p>{`: $${total}`}</p>
-                    </div>
-                    <div className="text-center text-2xl flex justify-center my-2 px-2">
-                        <button className="btn bg-primary text-white rounded-sm">Checkout</button>
-                    </div>
-                </div>
-            </div>
+            <Checkout total={total} />
         </div>
     )
 }
