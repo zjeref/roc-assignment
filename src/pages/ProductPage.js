@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs'
 import { useParams } from 'react-router-dom'
+import { ProductContext } from '../middlewares/global-state';
 
 const ProductPage = () => {
   const params = useParams();
   const [currentProduct, setCurrentProduct] = useState(null);
+  const {data, dispatch } = useContext(ProductContext)
 
   useEffect(() => {
     axios.get(`https://fakestoreapi.com/products/${params.id}`)
@@ -29,6 +31,16 @@ const ProductPage = () => {
     }
     return stars;
   }
+
+  const handleAddToCart = () => {
+    dispatch({
+      type: 'ADD_TO_CART',
+      payload: {
+        productId: currentProduct.id,
+        quantity: 1,
+      },
+    });
+  };
 
   return (
     <>{currentProduct ?
@@ -58,7 +70,7 @@ const ProductPage = () => {
               <p className='text-2xl'>${currentProduct.price}</p>
             </div>
             <div className="space-x-3 mt-4">
-              <button className='bg-primary text-white btn'>Add to Cart</button>
+              <button className='bg-primary text-white btn' onClick={handleAddToCart}>Add to Cart</button>
               <button className='bg-light text-black btn'>Buy Now</button>
             </div>
           </div>
