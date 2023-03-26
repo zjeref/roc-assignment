@@ -40,6 +40,13 @@ const Cart = () => {
         });
     };
 
+    const handleRemoveProduct = (productId) => {
+        dispatch({
+            type: "REMOVE_FROM_CART",
+            payload: productId
+        });
+    };
+
     const total = cartProducts.reduce((total, product) => {
         return total + product.price * product.quantity;
     }, 0).toFixed(2);
@@ -81,6 +88,10 @@ const Cart = () => {
                                             +
                                         </button>
                                     </div>
+                                    <div className="text-lg space-x-2">
+                                        <button className="font-bold">Save for Later</button>
+                                        <button className="text-red-600 font-bold" onClick={() => handleRemoveProduct(product.id)}>Remove</button>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -89,6 +100,7 @@ const Cart = () => {
 
                 ) : (
                     <p>Your cart is empty.</p>
+
                 )}
             </div>
             <div className='w-full md:max-w-xs h-max flex justify-between'>

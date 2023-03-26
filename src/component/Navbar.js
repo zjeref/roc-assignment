@@ -47,13 +47,13 @@ const Navbar = () => {
                             <>
                                 <Link to={`/cart/`}>
                                     <div className='flex space-x-2 cursor-pointer hover:underline'>
-                                        <div className='text-3xl'>
+                                        <div className='text-2xl'>
                                             <AiOutlineShoppingCart />
                                         </div>
-                                        <div className='text-2xl'>
+                                        <div className='text-xl'>
                                             <span>Cart</span>
                                         </div>
-                                        <div className='text-2xl'>
+                                        <div className='text-xl'>
                                             {currentCart?
                                                 <span>({currentCart?.products?.length})</span>:""
                                             }
@@ -61,10 +61,10 @@ const Navbar = () => {
                                     </div>
                                 </Link>
                                 <div className='flex space-x-2 cursor-pointer hover:underline'>
-                                    <div className='text-3xl'>
+                                    <div className='text-2xl'>
                                         <FaUserCircle />
                                     </div>
-                                    <div className='text-2xl'>
+                                    <div className='text-xl'>
                                         <span>{currentUser.name.firstname}</span>
                                     </div>
                                 </div>

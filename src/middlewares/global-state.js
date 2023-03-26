@@ -104,6 +104,20 @@ export const reducer = (state, action) => {
                 };
             }
         }
+
+        case "REMOVE_FROM_CART": {
+            const productId = action.payload;
+            const updatedProducts = state.cart.products.filter(
+                (product) => product.productId !== productId
+            );
+            return {
+                ...state,
+                cart: {
+                    ...state.cart,
+                    products: updatedProducts,
+                },
+            };
+        }
         default: {
             return
         }

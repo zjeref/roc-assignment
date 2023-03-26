@@ -73,7 +73,7 @@ const ProductPage = () => {
             </div>
             <div className="space-x-3 mt-4">
               <button className='bg-primary text-white btn' onClick={handleAddToCart}>Add to Cart</button>
-              <button className='bg-light text-black btn' onClick={() => navigate}>Buy Now</button>
+              <button className='bg-light text-black btn' onClick={handleAddToCart}>Buy Now</button>
             </div>
           </div>
         </div>
