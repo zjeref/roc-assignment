@@ -57,10 +57,10 @@ const Cart = () => {
                 {cartProducts.length > 0 ? (
                     <div className="transition-all ease-in-out delay-75">
                         {cartProducts.map((product) => (
-                            <div key={product.id} className="border-b-2 p-4 flex">
+                            <div key={product.id} className="border-b-2 p-4 flex flex-col sm:flex-row">
                                 <Link to={`/product/${product.id}`}>
-                                    <div className='w-56'>
-                                        <img src={product.image} alt={product.title} className="w-56 object-cover" />
+                                    <div className=' flex items-center justify-center h-full'>
+                                        <img src={product.image} alt={product.title} className="max-w-[14rem] md:min-w-[14rem] object-cover" />
                                     </div>
                                 </Link>
                                 <div className="mx-10 py-5">
