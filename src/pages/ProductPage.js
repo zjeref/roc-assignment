@@ -46,7 +46,7 @@ const ProductPage = () => {
 
   return (
     <>{currentProduct ?
-      <div className='w-full flex justify-center my-6 bg-light'>
+      <div className='w-full flex justify-center my-6 bg-light px-4'>
         <div className='w-full max-w-7xl border-2 flex flex-col md:flex-row justify-between bg-white mb-4 shadow-lg'>
           <div className='w-full md:w-5/12 p-4 text-center'>
             <div className='border-2 p-4'>

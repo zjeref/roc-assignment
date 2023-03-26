@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+
 import { ProductContext } from '../../middlewares/global-state'
 import Product from './Product';
 
@@ -38,8 +39,8 @@ const ProductList = () => {
         />
       </div>
       <div className="text-xl">
-        {data.category!=="all"?
-          <p>Showing result of: {searchTerm ? `${searchTerm}` : `${data.category.charAt(0).toUpperCase() + data.category.slice(1)}`}</p>:""
+        {data.category !== "all" ?
+          <p>Showing result of: {searchTerm ? `${searchTerm}` : `${data.category.charAt(0).toUpperCase() + data.category.slice(1)}`}</p> : ""
         }
       </div>
       <div className="max-w-[1440] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xxxl:grid-cols-5 gap-8  p-6 ">
@@ -47,7 +48,9 @@ const ProductList = () => {
           currentData.map(data => {
             return <Product key={data.id} product={data} />
           }) :
-          <p>No products found.</p>
+          <div className='w-full'>
+            <p className='text-lg text-center'>No Products to show</p>
+          </div>
         }
       </div>
     </div>
